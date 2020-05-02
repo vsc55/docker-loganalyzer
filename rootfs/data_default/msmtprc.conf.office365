@@ -1,0 +1,19 @@
+defaults
+port           587
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        /var/log/msmtp.log
+
+
+account office
+host           smtp.office365.com
+tls_starttls   on
+tls_certcheck  on
+from           "user@domain.com"
+user           user@domain.com
+password       "YourAwesomeStr0ngP4zzw0rd"
+
+
+# Set a default account
+account default : office

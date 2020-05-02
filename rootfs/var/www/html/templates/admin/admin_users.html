@@ -1,0 +1,96 @@
+<!-- INCLUDE include_header.html --> 
+
+<!-- IF ISERROR="true" -->
+<br><br>
+<center>
+	<div class="table_with_border_second ErrorMsg" style="width:80%">
+		<div class="PriorityError">{LN_GEN_ERRORDETAILS}</div>
+		<p>{ERROR_MSG}</p>
+		</div>
+	<br><br>
+	<a href="javascript:history.back();" target="_top">{LN_GEN_ERRORRETURNPREV}</a>
+</center>
+<br><br>
+<!-- ENDIF ISERROR="true" -->
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" class="table_with_border">
+<tr>
+	<td colspan="3" class="title" nowrap><B>{LN_USER_CENTER}</B></td>
+</tr>
+	<tr>
+		<td align="center">
+		<br><br>
+
+<!-- IF LISTUSERS="true" -->
+		<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td align="center" width="10%" class="cellmenu1"><b>{LN_USER_ID}</b></td>
+			<td align="center" width="40%" class="cellmenu1"><b>{LN_USER_NAME}</b></td>
+			<td align="center" width="15%" class="cellmenu1"><b>{LN_USER_ISADMIN}</b></td>
+			<td align="center" width="15%" class="cellmenu1"><b>{LN_USER_ISREADONLY}</b></td>
+			<td align="center" width="20%" class="cellmenu1"><b>{LN_GEN_ACTIONS}</b></td>
+		</tr>
+		<!-- BEGIN USERS -->
+		<tr>
+			<td align="center" class="{cssclass}"><b>{ID}</b></td>
+			<td align="center" class="{cssclass}"><a href="{BASEPATH}admin/users.php?op=edit&id={ID}">{username}</a></td>
+			<td align="center" class="{cssclass}"><a href="{BASEPATH}admin/users.php?miniop=setisadmin&id={ID}&newval={set_isadmin}" id="userisadminbutton{ID}"><img src="{is_isadmin_string}" width="16" title="{LN_USER_SETISADMIN}"></a></td>
+			<td align="center" class="{cssclass}"><a href="{BASEPATH}admin/users.php?miniop=setisreadonly&id={ID}&newval={set_isreadonly}" id="userisreadonlybutton{ID}"><img src="{is_readonly_string}" width="16" title="{LN_USER_SETISREADONLY}"></a></td>
+			<td align="center" class="{cssclass}">
+				&nbsp;<a href="{BASEPATH}admin/users.php?op=edit&id={ID}"><img src="{MENU_EDIT}" width="16" title="{LN_USER_EDIT}"></a>
+				&nbsp;<a href="{BASEPATH}admin/users.php?op=delete&id={ID}"><img src="{MENU_DELETE}" width="16" title="{LN_USER_DELETE}"></a>
+			</td>
+		</tr>
+		<!-- END USERS -->
+		<!-- IF ALLOWADDUSERS="true" -->
+		<tr>
+			<td align="center" colspan="5" class="line0"><b><a href="{BASEPATH}admin/users.php?op=add"><img src="{MENU_ADDUSER}" title="{LN_USER_ADD}">&nbsp;{LN_USER_ADD}</a></b></td>
+		</tr>
+		<!-- ENDIF ALLOWADDUSERS="true" -->
+		</table>
+<!-- ENDIF LISTUSERS="true" -->
+
+<!-- IF ISEDITORNEWUSER="true" -->
+		<form action="{BASEPATH}admin/users.php" method="post">
+			<table border="0" cellpadding="1" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+			<tr>
+				<td align="center" class="cellmenu1" colspan="2"><b>{LN_USER_ADDEDIT}</b></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" width="30%" nowrap><b>{LN_USER_NAME}</b></td>
+				<td align="left" class="line0" width="70%"><input type="text" name="username" size="40" maxlength="64" value="{USERNAME}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" nowrap><b>{LN_USER_PASSWORD1}</b></td>
+				<td align="left" class="line1"><input type="password" name="password1" size="40" maxlength="64" value="" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" nowrap><b>{LN_USER_PASSWORD2}</b></td>
+				<td align="left" class="line0"><input type="password" name="password2" size="40" maxlength="64" value="" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" nowrap><b>{LN_USER_ISADMIN}</b></td>
+				<td align="left" class="line1"><input type="checkbox" name="isadmin" value="yes" {CHECKED_ISADMIN}></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" nowrap><b>{LN_USER_ISREADONLY}</b></td>
+				<td align="left" class="line1"><input type="checkbox" name="isreadonly" value="yes" {CHECKED_ISREADONLY}></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2">
+					<input type="submit" value="{USER_SENDBUTTON}">
+					<input type="hidden" name="op" value="{USER_FORMACTION}">
+					<input type="hidden" name="id" value="{USERID}">
+				</td>
+			</tr>
+			</table>
+		</form>
+<!-- ENDIF ISEDITORNEWUSER="true" -->
+
+		<br><br>
+
+		</td>
+	</tr>
+</table>
+
+<!-- INCLUDE include_footer.html -->

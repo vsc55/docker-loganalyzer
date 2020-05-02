@@ -1,0 +1,59 @@
+
+	<table width="100%" border="0" cellspacing="1" cellpadding="0" class="mainfooter">
+	<tr>
+		<td align="center" class="line0" valign="_top">Made by <a href="http://www.adiscon.com" target="_blank">Adiscon</a>, <a href="https://www.rainer-gerhards.de/grossrinderfeld/" target="_blank">Großrinderfeld</a></td>
+		<td align="center" class="line1" valign="_top">
+			&nbsp;<a href="http://loganalyzer.adiscon.com" target="_blank">Adiscon LogAnalyzer</A> Version {BUILDNUMBER}
+		</td>
+		<td align="center" class="line0" valign="_top">
+			&nbsp;<B>Partners:</B> 
+ 		 </td>
+		<td align="center" class="line1" valign="_top">
+			&nbsp;<a href="http://www.rsyslog.com" target="_blank">Rsyslog</a> | 
+			&nbsp;<a href="http://www.winsyslog.com" target="_blank">WinSyslog</a>
+ 		 </td>
+		<!-- IF ShowPageRenderStats="true" -->
+		<td align="center" class="line2" valign="_top">
+			<small>
+			{LN_FOOTER_PAGERENDERED}: <B>{PAGERENDERTIME}</B> {LN_FOOTER_SECONDS}
+			&nbsp;|&nbsp;{LN_FOOTER_DBQUERIES}: <B>{TOTALQUERIES}</B>
+			&nbsp;|&nbsp;{LN_FOOTER_GZIPENABLED}: <B>{GzipCompressionEnmabled}</B>
+			&nbsp;|&nbsp;{LN_FOOTER_SCRIPTTIMEOUT}: <B>{MaxExecutionTime}</B> {LN_FOOTER_SECONDS}
+			</small>
+ 		 </td>
+		<!-- ENDIF ShowPageRenderStats="true" -->
+	 </tr>
+	 </table>
+
+	</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td colspan="2" background="{BASEPATH}themes/{user_theme}/images/bg_bottom.gif" height="16"><img src="{BASEPATH}themes/{user_theme}/images/bg_bottom.gif" height="16"></td>
+</tr>
+</table>
+
+
+<!-- IF SHOWDEBUGMSG="true" -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2" align="center" class="with_border">
+<tr> 
+	<td nowrap align="left" nowrap valign="top" class="cellmenu1_naked">{LN_DEBUGLEVEL}</td>
+	<td align="center" nowrap valign="top" class="cellmenu1_naked" width="100%">{LN_DEBUGMESSAGE}</td>
+</tr>
+	<!-- BEGIN DEBUGMSG -->
+	<tr>
+		<td nowrap align="center" nowrap valign="top" class="lineColouredWhite" bgcolor="{DBGLEVELBG}"><span class="cellmenu2"><B>{DBGLEVELTXT}</B></span></td>
+		<td align="left" nowrap valign="middle" class="line1">
+		<div id="SearchCode">{DBGMSG}</div>
+		</td>
+	</tr>
+	<!-- END DEBUGMSG -->
+</table>
+<!-- ENDIF SHOWDEBUGMSG="true" -->
+
+<script>$("#loading_dialog").loading("loadStop"); /* Hide Loading Widget */</script>
+{EXTRA_FOOTER}
+</body> 
+</html>

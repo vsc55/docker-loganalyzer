@@ -1,0 +1,76 @@
+
+#menu {
+	z-index: 10;
+/*	width: 16px; /* set width of menu */
+} 
+
+#menu ul { /* remove bullets and list indents */
+	z-index: 10;
+	position: relative; 
+/*		position: absolute;*/
+	display: block;
+
+	list-style: none;
+	white-space:nowrap;
+	margin: 0;
+	padding: 0;
+	vertical-align: text-top;
+}
+
+/* style, color and size links and headings to suit */
+#menu a, #menu h2 {
+	display: block;
+	margin: 0px;
+	padding: 1px 1px; 
+}
+
+#menu h2 {
+/*	font-size: 10px;  */
+	font-weight: bold;
+	text-align: center;
+}
+
+#menu a {
+	text-decoration: none;
+}
+
+#menu a:hover {
+	text-decoration: none;
+}
+
+#menu li {
+	text-align: left;
+	/* make the list elements a containing block for the nested lists */
+	position: relative;
+} 
+
+#menu ul li ul li {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #44617D #203040 #203040 #44617D;
+} 
+
+#menu ul ul {
+	z-index: 2;
+	white-space: nowrap;
+	position: absolute;
+
+	top: 12px; /*14px; */
+	left: 0px; /* to position them to the right of their containing block */
+
+	width: auto;
+	min-width: 250px; /* workaround for FF */
+	height: 16px;
+}
+
+div#menu ul ul,
+div#menu ul li:hover ul ul
+{
+	display: none;
+}
+
+div#menu ul li:hover ul,
+div#menu ul ul li:hover ul 
+{
+	display: block;
+}

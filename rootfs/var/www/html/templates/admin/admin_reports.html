@@ -1,0 +1,543 @@
+<!-- INCLUDE include_header.html --> 
+
+<!-- IF ISERROR="true" -->
+<br><br>
+<center>
+	<div class="table_with_border_second ErrorMsg" style="width:80%">
+		<div class="PriorityError">{LN_GEN_ERRORDETAILS}</div>
+		<p align="left">{ERROR_MSG}</p>
+		</div>
+	<br><br>
+	<a href="javascript:history.back();" target="_top">{LN_GEN_ERRORRETURNPREV}</a>
+</center>
+<br><br>
+<!-- ENDIF ISERROR="true" -->
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" class="table_with_border">
+<tr>
+	<td colspan="3" class="title" nowrap><B>{LN_ADMINMENU_REEPORTSOPT}{OPTIONAL_TITLE}</B></td>
+</tr>
+	<tr>
+		<td align="center">
+		<br><br>
+
+		<table border="0" cellpadding="2" cellspacing="0" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td class="topmenu2" nowrap align="center" width="25%"><a class="topmenu1_link" href="{BASEPATH}admin/reports.php" target="_top"><img align="left" src="{MENU_DOCUMENTLIST}" width="16" height="16" vspace="0" title="{LN_REPORTMENU_LIST}">{LN_REPORTMENU_LIST}</a></td>
+			<td class="topmenu2" nowrap align="center" width="25%"><a class="topmenu1_link" href="http://loganalyzer.adiscon.com/plugins/reports" target="_blank"><img align="left" src="{MENU_NETDOWNLOAD}" width="16" height="16" vspace="0" title="{LN_REPORTMENU_ONLINELIST}">{LN_REPORTMENU_ONLINELIST}</a></td>
+			<!-- IF ISADDSAVEDREPORT="true" -->
+			<td class="topmenu2" nowrap align="center" width="50%"><a class="topmenu1_link" href="{BASEPATH}admin/reports.php?op=details&id={ReportID}" target="_top"><img align="left" src="{MENU_VIEW}" width="16" height="16" vspace="0" title="{REPORTS_DETAILSFOR}">{REPORTS_DETAILSFOR}</a></td>
+			<!-- ENDIF ISADDSAVEDREPORT="true" -->
+			<!-- IF ISADDSAVEDREPORT!="true" -->
+			<td class="topmenu2" nowrap align="center" width="50%">&nbsp;</td>
+			<!-- ENDIF ISADDSAVEDREPORT!="true" -->
+		</tr>
+		</table>
+
+<!-- IF LISTREPORTS="true" -->
+		<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td align="center" width="15%" class="cellmenu1"><b>{LN_REPORTS_ID}</b></td>
+			<td align="center" width="25%" class="cellmenu1"><b>{LN_REPORTS_NAME}</b></td>
+			<td align="center" width="40%" class="cellmenu1"><b>{LN_REPORTS_DESCRIPTION}</b></td>
+			<td align="center" width="20%" class="cellmenu1" nowrap><b>{LN_GEN_ACTIONS}</b></td>
+		</tr>
+		<!-- BEGIN REPORTS -->
+		<tr>
+			<td align="left" class="{cssclass}" valign="top"><b>{ID}</b></td>
+			<td align="left" class="{cssclass}" valign="top"><a href="{BASEPATH}admin/reports.php?op=details&id={ID}">{DisplayName}</a></td>
+			<td align="left" class="{cssclass}" valign="top">{Description}</td>
+			<td align="center" class="{cssclass}">&nbsp;</td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan="1" rowspan="{SavedReportRowSpan}" class="cellmenu2_naked" valign="top">{LN_REPORTS_SAVEDREPORTS}</td>
+			<td align="center" colspan="3" class="line0">
+				<a href="{BASEPATH}admin/reports.php?op=addsavedreport&id={ID}"><img src="{MENU_ADD}" title="{LN_REPORTS_ADDSAVEDREPORT}">&nbsp;{LN_REPORTS_ADDSAVEDREPORT}</a>
+
+				<!-- IF ReportHelpEnabled="true" -->
+				&nbsp;&nbsp;<a href="{ReportHelpArticle}" target="_blank"><img src="{MENU_HELP}" width="16" title="{LN_REPORTS_HELP}">&nbsp;{LN_REPORTS_HELP}</a>
+				<!-- ENDIF ReportHelpEnabled="true" -->
+				&nbsp;&nbsp;<a href="{BASEPATH}admin/reports.php?op=details&id={ID}"><img src="{MENU_INFORMATION}" width="16" title="{LN_REPORTS_INFO}">&nbsp;{LN_REPORTS_INFO}</a>
+				<!-- IF EnableNeedsInit="true" -->
+					<!-- IF InitEnabled="true" -->
+					&nbsp;&nbsp;<a href="{BASEPATH}admin/reports.php?op=initreport&id={ID}"><img src="{MENU_PARSER_INIT}" width="16" title="{LN_REPORTS_INIT}">&nbsp;{LN_REPORTS_INIT}</a>
+					<!-- ENDIF InitEnabled="true" -->
+					<!-- IF DeleteEnabled="true" -->
+					&nbsp;&nbsp;<a href="{BASEPATH}admin/reports.php?op=removereport&id={ID}"><img src="{MENU_PARSER_DELETE}" width="16" title="{LN_REPORTS_REMOVE}">&nbsp;{LN_REPORTS_REMOVE}</a>
+					<!-- ENDIF DeleteEnabled="true" -->
+				<!-- ENDIF EnableNeedsInit="true" -->
+			</td>
+		</tr>
+		<!-- IF HASSAVEDREPORTS="true" -->
+		<!-- BEGIN SAVEDREPORTS -->
+		<tr>
+			<td align="left" class="{srcssclass}" colspan="2">
+			<img src="{MENU_REPORTS}" width="16">
+			<a href="{BASEPATH}admin/reports.php?op=editsavedreport&id={ID}&savedreportid={SavedReportID}">{customTitle}</a>
+			</td>
+			<td align="center" class="{srcssclass}">
+				&nbsp;<a href="{BASEPATH}reportgenerator.php?op=runreport&id={ID}&savedreportid={SavedReportID}" target="_blank"><img src="{MENU_PLAY_GREEN}" width="16" title="{LN_REPORTS_RUNNOW}"></a>
+				&nbsp;<a href="{BASEPATH}admin/reports.php?op=editsavedreport&id={ID}&savedreportid={SavedReportID}"><img src="{MENU_EDIT}" width="16" title="{LN_REPORTS_EDITSAVEDREPORT}"></a>
+				&nbsp;<a href="{BASEPATH}admin/reports.php?op=removesavedreport&savedreportid={SavedReportID}"><img src="{MENU_DELETE}" width="16" title="{LN_REPORTS_REMOVESAVEDREPORT}"></a>
+			</td>
+		</tr>
+		<!-- END SAVEDREPORTS -->
+		<!-- ENDIF HASSAVEDREPORTS="true" -->
+
+		<!-- END REPORTS -->
+		</table>
+<!-- ENDIF LISTREPORTS="true" -->
+
+<!-- IF LISTONLINEREPORTS="true" -->
+		<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td align="center" width="5%" class="cellmenu1"><b>{LN_REPORTS_INSTALLED}</b></td>
+			<td align="center" width="10%" class="cellmenu1"><b>{LN_REPORTS_ID}</b></td>
+			<td align="center" width="25%" class="cellmenu1"><b>{LN_REPORTS_NAME}</b></td>
+			<td align="center" width="40%" class="cellmenu1"><b>{LN_REPORTS_DESCRIPTION}</b></td>
+			<td align="center" width="20%" class="cellmenu1" nowrap><b>{LN_REPORTS_LINKS}</b></td>
+		</tr>
+		<!-- BEGIN ONLINEREPORTS -->
+		<tr>
+			<td align="center" class="{cssclass}"><img src="{installed_icon}" width="16" title="{installed_text}"></td>
+			<td align="left" class="{cssclass}" valign="top"><b>{reportid}</b></td>
+			<td align="left" class="{cssclass}" valign="top">
+			<!-- IF reportdownloadlink="-" -->
+			<b>{reportname}</b>
+			<!-- ENDIF reportdownloadlink="-" -->
+			<!-- IF reportdownloadlink!="-" -->
+			<a href="{reportdownloadlink}" target="_blank">{reportname}</a>
+			<!-- ENDIF reportdownloadlink!="-" -->
+			</td>
+			<td align="left" class="{cssclass}" valign="top">{reportdescription}</td>
+			<td align="center" class="{cssclass}">
+				<!-- IF reportdownloadlink!="-" -->
+				<a href="{reportdownloadlink}" target="_blank"><img src="{MENU_NETDOWNLOAD}" width="16" title="{LN_REPORTS_DOWNLOAD}"></a>&nbsp;&nbsp;
+				<!-- ENDIF reportdownloadlink!="-" -->
+				<!-- IF reporthelparticle!="-" -->
+				<a href="{reporthelparticle}" target="_blank"><img src="{MENU_HELP}" width="16" title="{LN_REPORTS_HELP}"></a>&nbsp;&nbsp;
+				<!-- ENDIF reporthelparticle!="-" -->
+				<!-- IF reportsamplelink!="-" -->
+				<a href="{reportsamplelink}" target="_blank"><img src="{MENU_CHART_PREVIEW}" width="16" title="{LN_REPORTS_SAMPLELINK}"></a>&nbsp;&nbsp;
+				<!-- ENDIF reportsamplelink!="-" -->
+			</td>
+		</tr>
+		<!-- END ONLINEREPORTS -->
+		</table>
+<!-- ENDIF LISTONLINEREPORTS="true" -->
+
+<!-- IF ISSHOWDETAILS="true" -->
+		<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td align="center" class="cellmenu1" colspan="3"><b>{LN_REPORTS_DETAILS}</b></td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2" width="30%"><b>{LN_REPORTS_CAT}</b></td>
+			<td align="left" class="line1" width="70%" colspan="2">{Category}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2"><b>{LN_REPORTS_ID}</b></td>
+			<td align="left" class="line1" colspan="2">{ReportID}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2"><b>{LN_REPORTS_NAME}</b></td>
+			<td align="left" class="line2" colspan="2">{DisplayName}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2_naked" valign="top"><b>{LN_REPORTS_DESCRIPTION}</b></td>
+			<td align="left" class="line1" colspan="2">{Description}</td>
+		</tr>
+		<!-- IF EnableRequiredFields="true" -->
+		<tr>
+			<td align="left" class="cellmenu2_naked" valign="top"><b>{LN_REPORTS_REQUIREDFIELDS}</b></td>
+			<td align="left" class="line1" colspan="2">
+				<!-- BEGIN RequiredFieldsList -->
+				<br><B>{FieldCaption}</B> ({FieldDefine})
+				<!-- END RequiredFieldsList -->
+				<br><br>
+			</td>
+		</tr>
+		<!-- ENDIF EnableRequiredFields="true" -->
+		<!-- IF EnableHelpArticle="true" -->
+		<tr>
+			<td align="left" class="cellmenu2"><b>{LN_REPORTS_HELP}</b></td>
+			<td align="center" class="line2" colspan="2"><a href="{ReportHelpArticle}" target="_blank">{LN_REPORTS_HELP_CLICK}</a></td>
+		</tr>
+		<!-- ENDIF EnableHelpArticle="true" -->
+		<!-- IF EnableNeedsInit="true" -->
+		<tr>
+			<td align="center" class="tableBackground" colspan="2">
+				<!-- IF InitEnabled="true" -->
+				<a href="{BASEPATH}admin/reports.php?op=initreport&id={ReportID}"><img src="{MENU_PARSER_INIT}" width="16" title="{LN_REPORTS_INIT}"> {LN_REPORTS_INIT}</a>
+				<!-- ENDIF InitEnabled="true" -->
+				<!-- IF DeleteEnabled="true" -->
+				<a href="{BASEPATH}admin/reports.php?op=removereport&id={ReportID}"><img src="{MENU_PARSER_DELETE}" width="16" title="{LN_REPORTS_REMOVE}"> {LN_REPORTS_REMOVE}</a>
+				<!-- ENDIF DeleteEnabled="true" -->
+			</td>
+		</tr>
+		<!-- ENDIF EnableNeedsInit="true" -->
+
+		<!-- IF HASSAVEDREPORTS="true" -->
+		<tr>
+			<td align="center" rowspan="{SavedReportRowSpan}" class="cellmenu2_naked" valign="top">{LN_REPORTS_SAVEDREPORTS}</td>
+			<td align="left" class="line1" colspan="2">
+			</td>
+		</tr>
+		<!-- BEGIN SAVEDREPORTS -->
+		<tr>
+			<td align="left" class="{srcssclass}">
+			<img src="{MENU_REPORTS}" width="16">
+			<a href="{BASEPATH}admin/reports.php?op=editsavedreport&id={ReportID}&savedreportid={SavedReportID}">{customTitle}</a>
+			</td>
+			<td align="center" class="{srcssclass}">
+				&nbsp;<a href="{BASEPATH}reportgenerator.php?op=runreport&id={ReportID}&savedreportid={SavedReportID}" target="_blank"><img src="{MENU_CHART_PREVIEW}" width="16" title="{LN_REPORTS_RUNNOW}"></a>
+				&nbsp;<a href="{BASEPATH}admin/reports.php?op=editsavedreport&id={ReportID}&savedreportid={SavedReportID}"><img src="{MENU_EDIT}" width="16" title="{LN_REPORTS_EDITSAVEDREPORT}"></a>
+				&nbsp;<a href="{BASEPATH}admin/reports.php?op=removesavedreport&savedreportid={SavedReportID}"><img src="{MENU_DELETE}" width="16" title="{LN_REPORTS_REMOVESAVEDREPORT}"></a>
+			</td>
+		</tr>
+		<!-- END SAVEDREPORTS -->
+		<!-- ENDIF HASSAVEDREPORTS="true" -->
+		</table>
+
+		<br><br>
+		<a href="javascript:history.back();" target="_top">{LN_GEN_ERRORRETURNPREV}</a>
+<!-- ENDIF ISSHOWDETAILS="true" -->
+
+<!-- IF ISADDSAVEDREPORT="true" -->
+		<script type='text/javascript'>
+		/* 
+		Helper Javascript Constants
+		*/
+		var REPORT_TARGET_STDOUT = 'stdout', REPORT_TARGET_FILE = 'file', REPORT_TARGET_EMAIL = 'mail';
+		var DATEMODE_LASTX = 3, DATEMODE_RANGE_FROM = 4, DATEMODE_RANGE_TO = 5;
+		var DATE_LASTX_HOUR = 1, DATE_LASTX_12HOURS = 2, DATE_LASTX_24HOURS = 3, DATE_LASTX_7DAYS = 4,DATE_LASTX_31DAYS = 5;
+
+		/*
+		*	Helper function to show and hide areas of the filterview
+		*/
+		function toggleOutputtargetvisibility(FormName)
+		{
+			var myform = document.getElementById(FormName);
+			if (myform.elements['outputTarget'].value == REPORT_TARGET_STDOUT)
+			{
+				hidevisibility('HiddenOutputFormatFile');
+				toggleformelement('HiddenOutputFormatFile', false);
+			}
+			else if (myform.elements['outputTarget'].value == REPORT_TARGET_FILE)
+			{
+				togglevisibility('HiddenOutputFormatFile');
+				toggleformelement('HiddenOutputFormatFile', true);
+			}
+			else if (myform.elements['outputTarget'].value == REPORT_TARGET_EMAIL)
+			{
+				hidevisibility('HiddenOutputFormatFile');
+				toggleformelement('HiddenOutputFormatFile', false);
+			}
+		}
+
+		function toggleDatefiltervisibility(FormName, Fieldnumber)
+		{
+			var myform = document.getElementById(FormName);
+			if (myform.elements['newcomparison_' + Fieldnumber].value == DATEMODE_LASTX)
+			{
+				showvisibility('HiddenDateLastXOptions_' + Fieldnumber);
+				hidevisibility('HiddenDateDetailsOptions_' + Fieldnumber);
+
+				toggleformelement('filter_daterange_year_' + Fieldnumber, false);
+				toggleformelement('filter_daterange_month_' + Fieldnumber, false);
+				toggleformelement('filter_daterange_day_' + Fieldnumber, false);
+				toggleformelement('filter_daterange_hour_' + Fieldnumber, false);
+				toggleformelement('filter_daterange_minute_' + Fieldnumber, false);
+				toggleformelement('filter_daterange_second_' + Fieldnumber, false);
+
+				toggleformelement('filter_daterange_last_x_' + Fieldnumber, true);
+			}
+			else if (myform.elements['newcomparison_' + Fieldnumber].value == DATEMODE_RANGE_FROM || myform.elements['newcomparison_' + Fieldnumber].value == DATEMODE_RANGE_TO)
+			{
+				showvisibility('HiddenDateDetailsOptions_' + Fieldnumber);
+				hidevisibility('HiddenDateLastXOptions_' + Fieldnumber);
+
+				toggleformelement('filter_daterange_year_' + Fieldnumber, true);
+				toggleformelement('filter_daterange_month_' + Fieldnumber, true);
+				toggleformelement('filter_daterange_day_' + Fieldnumber, true);
+				toggleformelement('filter_daterange_hour_' + Fieldnumber, true);
+				toggleformelement('filter_daterange_minute_' + Fieldnumber, true);
+				toggleformelement('filter_daterange_second_' + Fieldnumber, true);
+
+				toggleformelement('filter_daterange_last_x_' + Fieldnumber, false);
+			}
+		}
+		</script>
+
+		<!-- IF ISSOURCENOTOPTIMIZED="true" -->
+		<table width="80%" cellpadding="2" cellspacing="1" border="0" align="center" class="with_border_alternate">
+		<tr>
+			<td align="center" valign="top" class="line1 ErrorMsg">
+			<div class="{MSG_WARNING_CLASS}">{MSG_WARNING_TITLE}</div>
+			<p align="left">{MSG_WARNING_DETAILS}</p>
+			<a href="{MSG_CHECK_URL}" target="_top">{LN_REPORTS_RECHECKLOGSTREAMSOURCE}</a>
+			<br>
+			<br>
+			</td>
+		</tr>
+		<!-- IF MSG_WARNING_SUBMITFORM="true" -->
+		<tr>
+			<td align="center" class="line2">
+				<br>
+				<form action="{MSG_WARNING_FORMURL}" method="post" name="confirmform">
+					<!-- BEGIN POST_VARIABLES -->
+					<input type="hidden" name="{varname}" value="{varvalue}">
+					<!-- END POST_VARIABLES -->
+					<input type="image" src="{BASEPATH}images/icons/check.png" alt="{LN_REPORTS_OPTIMIZEYES}" class="borderless" width="16">
+					<br>
+					<input type="submit" value="{LN_REPORTS_OPTIMIZE_LOGSTREAMSOURCE}" class="borderless">
+				</form>
+
+			</td>
+		</tr>
+		<!-- ENDIF MSG_WARNING_SUBMITFORM="true" -->
+		</table>
+		<!-- ENDIF ISSOURCENOTOPTIMIZED="true" -->
+
+		<form action="{BASEPATH}admin/reports.php{FormUrlAddOP}" method="post" id="savedreportform">
+			<input type="hidden" name="id" value="{ReportID}">
+			<input type="hidden" name="savedreportid" value="{SavedReportID}">
+<!--			<input type="hidden" name="op" value="addsavedreport">-->
+			<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+			<tr>
+				<td align="center" class="cellmenu1" colspan="2"><b>{LN_REPORTS_ADDSAVEDREPORT}: '{DisplayName}'</b></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" width="30%" nowrap><b>{LN_REPORTS_CUSTOMTITLE}</b></td>
+				<td align="left" class="line1" width="70%"><input type="text" name="report_customtitle" size="80" maxlength="255" value="{customTitle}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" nowrap><b>{LN_REPORTS_CUSTOMCOMMENT}</b></td>
+				<td align="left" class="line2"><input type="text" name="report_customcomment" size="80" maxlength="255" value="{customComment}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2_naked" valign="top" nowrap><b>{LN_REPORTS_FILTERSTRING}</b></td>
+				<td align="left" class="line1"><font class="ErrorMsg">{LN_REPORTS_FILTERSTRING_ONLYEDITIF}</font></br><input type="text" name="report_filterString" size="100" maxlength="1024" value="{filterString_htmlform}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2_naked" valign="top" nowrap><b>{LN_REPORTS_FILTEREDITOR}</b></td>
+				<td align="left" class="line1">
+
+				<table border="0" cellpadding="1" cellspacing="1" bgcolor="#DDDDDD" width="100%" class="with_border_alternate">
+				<tr>
+					<td align="center" class="cellmenu1" colspan="4"><b>{LN_REPORTS_FILTERLIST}</b></td>
+				</tr>
+				<!-- BEGIN SUBFILTERS -->
+				<tr>
+					<td align="left" class="{colcssclass}" width="35%">
+						<input type="hidden" name="Filters[]" value="{FilterFieldID}">
+						<b>{FilterFieldName} (<I>{FilterFieldID}</I>)</b>
+					</td>
+					<td align="left" class="{colcssclass}" width="15%">
+						<select name="newcomparison_{ROWCNT}" size="1" class="maxwidth" OnChange="toggleDatefiltervisibility('savedreportform', {ROWCNT});">
+							<!-- BEGIN Comparisons -->
+							<option value="{ComparisonBit}" {cp_selected}>{ComparisonCaption}</option>
+							<!-- END Comparisons -->
+						</select>
+					</td>
+					<td align="left" class="{colcssclass}" width="40%">
+					<!-- IF FilterType!="2" -->
+						<input type="text" name="FilterValue_{ROWCNT}" size="32" maxlength="255" value="{FilterValue}" class="maxwidth">
+					<!-- ENDIF FilterType!="2" -->
+					<!-- IF FilterType="2" -->
+						<div id="HiddenDateDetailsOptions_{ROWCNT}" class="HiddenContent">
+						<table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+						<tr>
+							<td align="left" width="100%">
+								<select name="filter_daterange_year_{ROWCNT}" size="1" STYLE="width: 30%">
+									<!-- BEGIN filter_daterange_year_list -->
+									<option {selected} value="{value}">{value}</option>
+									<!-- END filter_daterange_year_list -->
+								</select>
+								 - 
+								<select name="filter_daterange_month_{ROWCNT}" size="1" STYLE="width: 30%">
+									<!-- BEGIN filter_daterange_month_list -->
+									<option {selected} value="{value}">{value}</option>
+									<!-- END filter_daterange_month_list -->
+								</select>
+								 - 
+								<select name="filter_daterange_day_{ROWCNT}" size="1" STYLE="width: 30%">
+									<!-- BEGIN filter_daterange_day_list -->
+									<option {selected} value="{value}">{value}</option>
+									<!-- END filter_daterange_day_list -->
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" width="100%">
+								<select name="filter_daterange_hour_{ROWCNT}" size="1" STYLE="width: 30%">
+									<!-- BEGIN filter_daterange_hour_list -->
+									<option {selected} value="{value}">{value}</option>
+									<!-- END filter_daterange_hour_list -->
+								</select>
+								 - 
+								<select name="filter_daterange_minute_{ROWCNT}" size="1" STYLE="width: 30%">
+									<!-- BEGIN filter_daterange_minute_list -->
+									<option {selected} value="{value}">{value}</option>
+									<!-- END filter_daterange_minute_list -->
+								</select>
+								 - 
+								<select name="filter_daterange_second_{ROWCNT}" size="1" STYLE="width: 30%">
+									<!-- BEGIN filter_daterange_second_list -->
+									<option {selected} value="{value}">{value}</option>
+									<!-- END filter_daterange_second_list -->
+								</select>
+							</td>
+						</tr>
+						</table>
+						</div>
+
+						<div id="HiddenDateLastXOptions_{ROWCNT}" class="HiddenContent">
+						<table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+						<tr>
+							<td align="left" width="100%">
+								<select name="filter_daterange_last_x_{ROWCNT}" size="1" class="maxwidth">
+									<!-- BEGIN MyFilter_daterange_last_x_list -->
+									<option {selected} value="{LastXID}">{LastXDisplayName}</option>
+									<!-- END MyFilter_daterange_last_x_list -->
+								</select>
+							</td>
+						</tr>
+						</table>
+						</div>
+
+						<script language="javascript">
+							// Manually perform initial Javascript Calls
+							toggleDatefiltervisibility('savedreportform',{ROWCNT});
+						</script>
+					<!-- ENDIF FilterType="2" -->
+					</td>
+					<td align="center" class="{colcssclass}" width="10%">
+						<button name="subop_edit" type="submit" value="{ROWCNT}" class="borderlessbuttons" title="{LN_REPORTS_FILTER_EDIT}"><img src="{MENU_EDIT}" width="16" alt="{LN_REPORTS_FILTER_EDIT}"></button>
+						<button name="subop_delete" type="submit" value="{ROWCNT}" class="borderlessbuttons" title="{LN_REPORTS_FILTER_REMOVE}"><img src="{MENU_DELETE}" width="16" alt="{LN_REPORTS_FILTER_REMOVE}"></button>
+					</td>
+				</tr>
+				<!-- END SUBFILTERS -->
+				<tr>
+					<td align="center" class="line2" colspan="4">
+
+						<select name="newfilter" size="1" class="maxwidth">
+							<!-- BEGIN FIELDS -->
+							<option value="{FieldID}" {group_selected}>{FieldCaption}</option>
+							<!-- END FIELDS -->
+						</select>
+						<input type="submit" name="subop" value="{LN_REPORTS_ADDFILTER}">
+					</td>
+				</tr>
+				</table>
+
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2_naked" valign="top" nowrap><b>{LN_REPORTS_ADVANCEDFILTERS}</b></td>
+				<td align="left" class="line1">
+
+				<table border="0" cellpadding="1" cellspacing="1" bgcolor="#DDDDDD" width="100%" class="with_border_alternate">
+				<tr>
+					<td align="center" class="cellmenu1" colspan="4"><b>{LN_REPORTS_ADVANCEDFILTERLIST}</b></td>
+				</tr>
+				<!-- BEGIN CUSTOMFILTERS -->
+				<tr>
+					<!-- IF filtertype="1" -->
+					<td align="left" class="{colcssclass}" width="70%">
+						<b>{fieldcaption}</b><br/>(<I>{fielddescription}</I>)
+					</td>
+					<td align="left" class="{colcssclass}" width="30%">
+						<input type="text" name="{fieldname}" size="30" maxlength="255" value="{fieldvalue}" class="maxwidth">
+					</td>
+					<!-- ENDIF filtertype="1" -->
+					<!-- IF filtertype="3" -->
+					<td align="left" class="{colcssclass}" colspan="2">
+						<input type="checkbox" name="{fieldname}" value="1" {fieldvalue_selected}>
+						<b>{fieldcaption}</b> &nbsp; (<I>{fielddescription}</I>)
+					</td>
+					<!-- ENDIF filtertype="3" -->
+				</tr>
+				<!-- END CUSTOMFILTERS -->
+				</table>
+
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" nowrap><b>{LN_REPORTS_SOURCEID}</b></td>
+				<td align="left" class="line2">
+					<select name="SourceID" size="1" class="maxwidth">
+						<!-- BEGIN SOURCES -->
+						<option value="{SourceID}" {sourceselected}>{Name}</option>
+						<!-- END SOURCES -->
+					</select>
+					<a href="{MSG_CHECK_URL}" target="_top">{LN_REPORTS_CHECKLOGSTREAMSOURCE}</a>
+<!--					<button name="forcecheckoptimize" type="true" value="{REPORT_FORMACTION}" title="{LN_REPORTS_CHECKLOGSTREAMSOURCE}">{LN_REPORTS_CHECKLOGSTREAMSOURCE}</button>-->
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" nowrap><b>{LN_REPORTS_OUTPUTFORMAT}</b></td>
+				<td align="left" class="line1">
+					<select name="outputFormat" size="1" class="maxwidth">
+						<!-- BEGIN OUTPUTFORMATS -->
+						<option value="{formatid}" {formatselected}>{formatdisplayname}</option>
+						<!-- END OUTPUTFORMATS -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" nowrap><b>{LN_REPORTS_OUTPUTTARGET}</b></td>
+				<td align="left" class="line1">
+					<select name="outputTarget" size="1" class="maxwidth" OnChange="toggleOutputtargetvisibility('savedreportform');">
+						<!-- BEGIN OUTPUTTARGETS -->
+						<option value="{targetid}" {targetselected}>{targetdisplayname}</option>
+						<!-- END OUTPUTTARGETS -->
+					</select>
+				</td>
+			</tr>
+			</table>
+
+			<div id="HiddenOutputFormatFile" class="HiddenContent">
+			<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+			<tr>
+				<td align="left" class="cellmenu2" width="30%" valign="top" nowrap><b>{LN_REPORTS_OUTPUTTARGET_FILE}</b></td>
+				<td align="left" class="line1" width="70%">
+					<input type="text" name="outputTarget_filename" size="80" maxlength="1024" value="{outputTarget_filename}" class="maxwidth">
+				</td>
+			</tr>
+			</table>
+			</div>
+
+			<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+			<!-- IF enableCronCommand="true" -->
+			<tr>
+				<td align="left" class="cellmenu2_naked" width="30%" nowrap><b>{LN_REPORTS_CRONCMD}</b></td>
+				<td align="left" class="line2" width="70%"><input readonly type="text" size="100" maxlength="255" value="{cronCommand}" class="maxwidth"></td>
+			</tr>
+			<!-- ENDIF enableCronCommand="true" -->
+			<tr>
+				<td align="center" colspan="2">
+					<button name="op" type="submit" value="{REPORT_FORMACTION}" title="{REPORT_SENDBUTTON}">{REPORT_SENDBUTTON}</button>
+					<button name="op" type="submit" value="{REPORT_FORMACTIONRETURN}" title="{REPORT_SENDBUTTON}">{REPORT_SENDANDRETURN}</button>
+				</td>
+			</tr>
+			</table>
+		</form>
+
+		<script language="javascript">
+			// Manually perform initial Javascript Calls
+			toggleOutputtargetvisibility('savedreportform');
+		</script>
+
+		<a href="javascript:history.back();" target="_top">{LN_GEN_ERRORRETURNPREV}</a>
+		<br><br>
+<!-- ENDIF ISADDSAVEDREPORT="true" -->
+
+		<br><br>
+
+		</td>
+	</tr>
+</table>
+
+<!-- INCLUDE include_footer.html -->

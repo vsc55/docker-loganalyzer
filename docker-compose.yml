@@ -1,0 +1,12 @@
+version: "2"
+services:
+  webapp:
+    image: vsc55/loganalyzer:latest
+    ports:
+      - "80:80"
+    environment:
+      - TZ=Europe/Madrid
+      - HTTP_PORT=80
+    volumes:
+      - ./data:/data
+      - ./logs:/var/log

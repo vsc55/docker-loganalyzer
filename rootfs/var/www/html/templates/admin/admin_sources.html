@@ -1,0 +1,433 @@
+<!-- INCLUDE include_header.html --> 
+
+<script language="javascript">
+	/*
+	*	Helper function to show and hide areas of the filterview
+	*/
+	function toggleSourceTypeVisibility(FormFieldName)
+	{
+		var myfield = document.getElementById(FormFieldName);
+		if (myfield.value == 1)
+		{
+			showvisibility("HiddenDiskTypeOptions");
+			hidevisibility("HiddenDatabaseTypeOptions");
+		}
+		else if (myfield.value == 2)
+		{
+			showvisibility("HiddenDatabaseTypeOptions");
+			hidevisibility("HiddenDiskTypeOptions");
+
+			showvisibility("HiddenMYSQLSourceOptions");
+			hidevisibility("HiddenPDOSourceOptions");
+		}
+		else if (myfield.value == 3)
+		{
+			showvisibility("HiddenDatabaseTypeOptions");
+			hidevisibility("HiddenDiskTypeOptions");
+
+			showvisibility("HiddenPDOSourceOptions");
+			hidevisibility("HiddenMYSQLSourceOptions");
+		}
+		else if (myfield.value == 4)
+		{
+			showvisibility("HiddenDatabaseTypeOptions");
+			hidevisibility("HiddenDiskTypeOptions");
+
+			hidevisibility("HiddenPDOSourceOptions");
+			hidevisibility("HiddenMYSQLSourceOptions");
+		}
+		else if (myfield.value == 5)
+		{
+			showvisibility("HiddenDatabaseTypeOptions");
+			hidevisibility("HiddenDiskTypeOptions");
+
+			showvisibility("HiddenMYSQLSourceOptions");
+			hidevisibility("HiddenPDOSourceOptions");
+		}
+	}
+</script>
+
+<!-- IF ISERROR="true" -->
+<br><br>
+<center>
+	<div class="table_with_border_second ErrorMsg" style="width:80%">
+		<div class="PriorityError">{LN_GEN_ERRORDETAILS}</div>
+		<p>{ERROR_MSG}</p>
+		</div>
+	<br><br>
+	<a href="javascript:history.back();" target="_top" title="{LN_GEN_ERRORRETURNPREV}">{LN_GEN_ERRORRETURNPREV}</a>
+</center>
+<br><br>
+<!-- ENDIF ISERROR="true" -->
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" class="table_with_border">
+<tr>
+	<td colspan="3" class="title" nowrap><B>{LN_SOURCES_CENTER}</B></td>
+</tr>
+	<tr>
+		<td align="center">
+		<br><br>
+
+<!-- IF LISTSOURCES="true" -->
+		<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td align="center" width="6%" class="cellmenu1"><b>{LN_SOURCES_ID}</b></td>
+			<td align="center" width="30%" class="cellmenu1"><b>{LN_SOURCES_NAME}</b></td>
+			<td align="center" width="20%" class="cellmenu1"><b>{LN_SOURCES_TYPE}</b></td>
+			<td align="center" width="22%" class="cellmenu1"><b>{LN_SOURCES_ASSIGNTO}</b></td>
+			<td align="center" width="22%" class="cellmenu1" colspan="2"><b>{LN_GEN_ACTIONS}</b></td>
+		</tr>
+		<!-- BEGIN SOURCES -->
+		<tr>
+			<td align="center" class="{cssclass}"><b>{ID}</b></td>
+			<td align="left" class="{cssclass}">
+			<!-- IF ActionsAllowed="true" -->
+			<a href="{BASEPATH}admin/sources.php?op=edit&id={ID}">{Name}</a>
+			<!-- ENDIF ActionsAllowed="true" -->
+			<!-- IF ActionsAllowed!="true" -->
+			<b>{Name}</b>
+			<!-- ENDIF ActionsAllowed!="true" -->
+			
+			</td>
+			<td align="left" class="{cssclass}"><img src="{SourcesTypeImage}" width="16" align="left" title="{SourcesTypeText}"> <b>{SourcesTypeText}</b></td>
+			<td align="left" class="{cssclass}"><img src="{SourcesAssignedToImage}" width="16" align="left" title="{SourcesAssignedToText}"> <b>{SourcesAssignedToText}</b></td>
+			<td align="center" class="{cssclass}">
+				<!-- IF ActionsAllowed="true" -->
+				&nbsp;<a href="{BASEPATH}admin/sources.php?op=edit&id={ID}"><img src="{MENU_EDIT}" width="16" title="{LN_GEN_ERRORRETURNPREV}"></a>
+				&nbsp;<a href="{BASEPATH}admin/sources.php?op=delete&id={ID}"><img src="{MENU_DELETE}" width="16" title="{LN_GEN_ERRORRETURNPREV}"></a>
+				<!-- ENDIF ActionsAllowed="true" -->
+				<!-- IF ActionsAllowed!="true" -->
+				&nbsp;<img src="{MENU_EDIT_DISABLED}" width="16" title="{LN_GEN_DISABLED}">
+				&nbsp;<img src="{MENU_DELETE_DISABLED}" width="16" title="{LN_GEN_DISABLED}">
+				<!-- ENDIF ActionsAllowed!="true" -->
+			</td>
+
+			<td align="center" class="{cssclass}">
+				<!-- IF IsDatabaseSource="true" -->
+				&nbsp;<a href="{BASEPATH}admin/sources.php?op=dbstats&id={ID}"><img src="{MENU_CHARTS}" width="16" OnMouseOver="HoverPopupHelp(event, this, '{LN_ADMIN_POPUPHELP}', '{LN_ADMIN_DBSTATS}');" OnMouseOut="FinishPopupWindowMenu();" title="{LN_ADMIN_DBSTATS}"></a>
+				&nbsp;<a href="{BASEPATH}admin/sources.php?op=cleardata&id={ID}"><img src="{MENU_TRASH}" width="16" OnMouseOver="HoverPopupHelp(event, this, '{LN_ADMIN_POPUPHELP}', '{LN_ADMIN_CLEARDATA}');" OnMouseOut="FinishPopupWindowMenu();" title="{LN_ADMIN_CLEARDATA}"></a>
+				<!-- ENDIF IsDatabaseSource="true" -->
+			</td>
+		</tr>
+		<!-- END SOURCES -->
+		<tr>
+			<td align="center" colspan="6" class="line0"><b><a href="{BASEPATH}admin/sources.php?op=add"><img src="{MENU_ADD}" title="{LN_SOURCES_ADD}">&nbsp;{LN_SOURCES_ADD}</a></b></td>
+		</tr>
+		</table>
+<!-- ENDIF LISTSOURCES="true" -->
+
+<!-- IF ISCLEARDATA="true" -->
+		<table border="0" cellpadding="1" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td align="center" class="cellmenu1" colspan="2"><b>{LN_SOURCES_DETAILS}</b></td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2" width="30%"><b>{LN_SOURCES_ID}</b></td>
+			<td align="left" class="line1" width="70%">{SOURCEID}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2"><b>{LN_SOURCES_NAME}</b></td>
+			<td align="left" class="line2">{DisplayName}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2" valign="top"><b>{LN_SOURCES_TYPE}</b></td>
+			<td align="left" class="line1">{SourceTypeName}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2" valign="top"><b>{LN_SOURCES_ROWCOUNT}</b></td>
+			<td align="left" class="line1">{ROWCOUNT}</td>
+		</tr>
+		</table>
+		<br />
+
+		<form action="{BASEPATH}admin/sources.php?op=cleardata&id={SOURCEID}" method="post">
+			<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+			<tr>
+				<td align="center" class="cellmenu1" nowrap colspan="2"><B>{LN_SOURCES_CLEARDATA}</B></td>
+			</tr>
+			<tr>
+				<td class="titleSecond" colspan="2"><blockquote>{LN_SOURCES_CLEAR_HELPTEXT}</blockquote></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2_naked" width="30%" valign="top"><b>{LN_SOURCES_CLEAROPTIONS}</b></td>
+				<td align="left" class="line1" width="70%">
+					<br>
+					<input type="radio" name="subop" value="all">&nbsp;&nbsp;<b>{LN_SOURCES_CLEARALL}</b><br>
+					
+					<!-- IF DELETE_ALLOWDETAIL="true" -->
+					<input type="radio" name="subop" value="since">&nbsp;&nbsp;<b>{LN_SOURCES_CLEARSINCE}</b>
+					<select name="olderthan" size="1">
+						<!-- BEGIN OLDERTHAN -->
+						<option {selected} value="{OlderThanSeconds}">{OlderThanDisplayName}</option>
+						<!-- END OLDERTHAN -->
+					</select>
+					<br>
+
+					<input type="radio" name="subop" value="date">&nbsp;&nbsp;<b>{LN_SOURCES_CLEARDATE}</b>
+					<select name="olderdate_year" size="1">
+						<!-- BEGIN olderdate_years -->
+						<option {selected} value="{value}">{value}</option>
+						<!-- END olderdate_years -->
+					</select>
+					 - 
+					<select name="olderdate_month" size="1">
+						<!-- BEGIN olderdate_months -->
+						<option {selected} value="{value}">{value}</option>
+						<!-- END olderdate_months -->
+					</select>
+					 - 
+					<select name="olderdate_day" size="1">
+						<!-- BEGIN olderdate_days -->
+						<option {selected} value="{value}">{value}</option>
+						<!-- END olderdate_days -->
+					</select>
+					<br>
+					
+					<br>
+					<!-- ENDIF DELETE_ALLOWDETAIL="true" -->
+				</td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2">
+					<input type="submit" value="{LN_SOURCES_CLEARDATA_SEND}">
+				</td>
+			</tr>
+			</table>
+		</form>
+
+		<br><br>
+		<a href="javascript:history.back();" target="_top">{LN_GEN_ERRORRETURNPREV}</a>
+<!-- ENDIF ISCLEARDATA="true" -->
+
+<!-- IF ISSTATS="true" -->
+		<table border="0" cellpadding="1" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td align="center" class="cellmenu1" colspan="2"><b>{LN_SOURCES_DETAILS}</b></td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2" width="40%"><b>{LN_SOURCES_ID}</b></td>
+			<td align="left" class="line1" width="60%">{SOURCEID}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2"><b>{LN_SOURCES_NAME}</b></td>
+			<td align="left" class="line2">{DisplayName}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2" valign="top"><b>{LN_SOURCES_TYPE}</b></td>
+			<td align="left" class="line1">{SourceTypeName}</td>
+		</tr>
+		<tr>
+			<td align="left" class="cellmenu2_naked" valign="top"><b>{LN_SOURCES_DESCRIPTION}</b></td>
+			<td align="left" class="line1">{Description}</td>
+		</tr>
+		</table>
+		<br />
+
+		<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td class="cellmenu1" nowrap><B>{LN_SOURCES_STATSDETAILS}</B></td>
+		</tr>
+		</table>
+
+		<!-- BEGIN STATS -->
+		<table border="0" cellpadding="2" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+		<tr>
+			<td align="center" width="40%" class="cellmenu2"><b>{LN_SOURCES_STATSNAME}</b></td>
+			<td align="center" width="60%" class="cellmenu2"><b>{LN_SOURCES_STATSVALUE}</b></td>
+		</tr>
+		<!-- BEGIN STATSDATA -->
+		<tr>
+			<td align="left" class="{cssclass}"><b>{StatsDisplayName}</b></td>
+			<td align="left" class="{cssclass}"><pre>{StatsValue}</pre></td>
+		</tr>
+		<!-- END STATSDATA -->
+		</table>
+		<!-- END STATS -->
+
+		<br><br>
+		<a href="javascript:history.back();" target="_top">{LN_GEN_ERRORRETURNPREV}</a>
+<!-- ENDIF ISSTATS="true" -->
+
+<!-- IF ISEDITORNEWSOURCE="true" -->
+		<form action="{BASEPATH}admin/sources.php" method="post">
+			<table border="0" cellpadding="1" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+			<tr>
+				<td align="center" class="cellmenu1" colspan="2"><b>{LN_SOURCES_ADDEDIT}</b></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2" width="30%"><b>{LN_SOURCES_NAME}</b></td>
+				<td align="left" class="line1" width="70%"><input type="text" name="Name" maxlength="255" value="{Name}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2_naked" valign="top"><b>{LN_SOURCES_DESCRIPTION}</b></td>
+				<td align="left" class="line1"><textarea name="Description" cols="50" rows="5" class="maxwidth">{Description}</textarea></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_SOURCES_TYPE}</b></td>
+				<td align="left" class="line1">
+					<select id="SourceType" name="SourceType" size="1" OnChange="toggleSourceTypeVisibility('SourceType');" class="maxwidth">
+						<!-- BEGIN SOURCETYPES -->
+						<option {selected} value="{type}">{DisplayName}</option>
+						<!-- END SOURCETYPES -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_VIEW}</b></td>
+				<td align="left" class="line1">
+					<select id="SourceViewID" name="SourceViewID" size="1" class="maxwidth">
+						<!-- BEGIN VIEWS -->
+						<option {selected} value="{ID}">{DisplayName}</option>
+						<!-- END VIEWS -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_MSGPARSERS}</b></td>
+				<td align="left" class="line1"><input type="text" name="MsgParserList" maxlength="255" value="{MsgParserList}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_NORMALIZEMSG}</b></td>
+				<td align="left" class="line1"><input type="checkbox" name="MsgNormalize" value="1" {CHECKED_ISNORMALIZEMSG}></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2_naked"><b>{LN_CFG_SKIPUNPARSEABLE}</b></td>
+				<td align="left" class="line1"><input type="checkbox" name="MsgSkipUnparseable" value="1" {CHECKED_ISSKIPUNPARSEABLE}></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2_naked" valign="top"><b>{LN_SOURCES_FILTERSTRING}</b></td>
+				<td align="left" class="line1"><font class="ErrorMsg">{LN_SOURCES_FILTERSTRING_HELP}</font></br><input type="text" name="defaultfilter" class="maxwidth" maxlength="1024" value="{defaultfilter}"></td>
+			</tr>
+
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_GEN_USERONLY}</b></td>
+				<td align="left" class="line1"><input type="checkbox" name="isuseronly" value="{userid}" {CHECKED_ISUSERONLY}></td>
+			</tr>
+			<!-- IF ISGROUPSAVAILABLE="true" -->
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_GEN_GROUPONLY}</b></td>
+				<td align="left" class="line2">
+					<select name="groupid" size="1" class="maxwidth" {READONLY_ISUSERONLY}>
+						<!-- BEGIN SUBGROUPS -->
+						<option value="{mygroupid}" {group_selected}>{groupname}</option>
+						<!-- END SUBGROUPS -->
+					</select>
+				</td>
+			</tr>
+			<!-- ENDIF ISGROUPSAVAILABLE="true" -->
+			</table>
+			<br>
+
+			<div id="HiddenDiskTypeOptions" class="ShownContent">
+			<table border="0" cellpadding="1" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+			<tr><td align="center" class="cellmenu1" colspan="2"><b>{LN_SOURCES_DISKTYPEOPTIONS}</b></td></tr>
+			<tr>
+				<td align="left" class="cellmenu2" width="250"><b>{LN_CFG_LOGLINETYPE}</b></td>
+				<td align="left" class="line0" width="350">
+					<select name="SourceLogLineType" size="1">
+						<!-- BEGIN LOGLINETYPES -->
+						<option {selected} value="{type}">{DisplayName}</option>
+						<!-- END LOGLINETYPES -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_SYSLOGFILE}</b></td>
+				<td align="left" class="line1"><input type="text" name="SourceDiskFile" size="50" maxlength="255" value="{SourceDiskFile}"></td>
+			</tr>
+			</table>
+			</div>
+
+			<div id="HiddenDatabaseTypeOptions" class="ShownContent">
+			<table border="0" cellpadding="1" cellspacing="1" width="80%" align="center" class="with_border">
+			<tr><td align="center" class="cellmenu1" colspan="2"><b>{LN_CFG_DATABASETYPEOPTIONS}</b></td></tr>
+			</table>
+
+			<div id="HiddenPDOSourceOptions" class="ShownContent">
+			<table border="0" cellpadding="1" cellspacing="1" width="80%" align="center" class="with_border">
+			<tr>
+				<td align="left" class="cellmenu2" width="250"><b>{LN_CFG_DBSTORAGEENGINE}</b></td>
+				<td align="left" class="line1" width="350">
+					<select name="SourceDBType" size="1" class="maxwidth">
+						<!-- BEGIN DBTYPES -->
+						<option {selected} value="{type}">{DisplayName}</option>
+						<!-- END DBTYPES -->
+					</select>
+				</td>
+			</tr>
+			</table>
+			</div>
+
+			<table border="0" cellpadding="1" cellspacing="1" width="80%" align="center" class="with_border">
+			<tr>
+				<td align="left" class="cellmenu2" width="30%"><b>{LN_CFG_DBTABLETYPE}</b></td>
+				<td align="left" class="line0" width="70%">
+					<select name="SourceDBTableType" size="1" class="maxwidth">
+						<!-- BEGIN DBMAPPINGS -->
+						<option {selected} value="{type}">{DisplayName}</option>
+						<!-- END DBMAPPINGS -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_DBSERVER}</b></td>
+				<td align="left" class="line0"><input type="text" name="SourceDBServer" maxlength="255" value="{SourceDBServer}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_DBNAME}</b></td>
+				<td align="left" class="line1"><input type="text" name="SourceDBName" maxlength="255" value="{SourceDBName}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_DBTABLENAME}</b></td>
+				<td align="left" class="line0"><input type="text" name="SourceDBTableName" maxlength="255" value="{SourceDBTableName}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_DBUSER}</b></td>
+				<td align="left" class="line1"><input type="text" name="SourceDBUser" maxlength="255" value="{SourceDBUser}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_DBPASSWORD}</b></td>
+				<td align="left" class="line0"><input type="password" name="SourceDBPassword" maxlength="255" value="{SourceDBPassword}" class="maxwidth"></td>
+			</tr>
+			<tr>
+				<td align="left" class="cellmenu2"><b>{LN_CFG_DBROWCOUNTING}</b></td>
+				<td align="left" class="line1" width="100%">
+					<input type="radio" name="SourceDBEnableRowCounting" value="true" {SourceDBEnableRowCounting_true}> Yes <input type="radio" name="SourceDBEnableRowCounting" value="false" {SourceDBEnableRowCounting_false}> No
+				</td>
+			</tr>
+			</table>
+			</div>
+
+			<div id="HiddenMYSQLSourceOptions" class="ShownContent">
+			<table border="0" cellpadding="1" cellspacing="1" width="80%" align="center" class="with_border">
+			<tr>
+				<td align="left" class="cellmenu2" width="250"><b>{LN_CFG_DBRECORDSPERQUERY}</b></td>
+				<td align="left" class="line1" width="350"><input type="text" name="SourceDBRecordsPerQuery" size="40" maxlength="255" value="{SourceDBRecordsPerQuery}"></td>
+			</tr>
+			</table>
+			</div>
+
+			<table border="0" cellpadding="1" cellspacing="1" bgcolor="#DDDDDD" width="80%" class="with_border_alternate">
+			<tr>
+				<td align="center" colspan="2">
+					<input type="submit" value="{SOURCE_SENDBUTTON}">
+					<input type="hidden" name="op" value="{SOURCE_FORMACTION}">
+					<input type="hidden" name="id" value="{SOURCEID}">
+				</td>
+			</tr>
+			</table>
+		</form>
+
+		<script language="javascript">
+			// Manually perform initial Javascript Calls
+			toggleSourceTypeVisibility('SourceType');
+		</script>
+<!-- ENDIF ISEDITORNEWSOURCE="true" -->
+
+		<br><br>
+
+		</td>
+	</tr>
+</table>
+
+<!-- INCLUDE include_footer.html -->

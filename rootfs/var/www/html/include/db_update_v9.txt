@@ -1,0 +1,21 @@
+-- New Database Structure Updates
+CREATE TABLE `logcon_savedreports` (
+  `ID` int(11) NOT NULL auto_increment,
+  `reportid` varchar(255) NOT NULL,
+  `sourceid` int(11) NOT NULL,
+  `customTitle` varchar(255) NOT NULL,
+  `customComment` text NOT NULL,
+  `filterString` text NOT NULL,
+  `customFilters` text NOT NULL,
+  `outputFormat` varchar(64) NOT NULL,
+  `outputTarget` varchar(64) NOT NULL,
+  `outputTargetDetails` text NOT NULL,
+  `scheduleSettings` text NOT NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT = 'Table to store saved reports' AUTO_INCREMENT=1 ;
+
+ALTER TABLE `logcon_users` ADD `is_readonly` tinyint(1) NOT NULL DEFAULT '0' AFTER `is_admin` ;
+
+-- Insert data
+
+-- Updated Data
