@@ -1,5 +1,5 @@
 # Docker LogAnalyzer
-Docker webapp -> [Adiscon LogAnalyzer Version](https://loganalyzer.adiscon.com/)
+Docker webapp -> [Adiscon LogAnalyzer](https://loganalyzer.adiscon.com/)
 * Version: 4.1.10
 
 ## Create Container:

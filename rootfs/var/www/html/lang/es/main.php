@@ -1,8 +1,12 @@
 <?php
 /*
 	*********************************************************************
+	* Adiscon LogAnalyzer Version 4.1.10
+	* ----------------------------------
+	*
 	* Copyright © 2020  Javier Pastor (aka VSC55)
 	* <jpastor at cerebelum dot net>
+	* https://github.com/vsc55/docker-loganalyzer
 	* 
 	* This program is free software: you can redistribute it and/or modify
 	* it under the terms of the GNU General Public License as published by
@@ -55,7 +59,7 @@ $content['LN_GEN_SELECTVIEW'] = "Seleccionar Vista";
 $content['LN_GEN_CRITERROR_UNKNOWNTYPE'] = "LogAnalyzer aún no admite el tipo de fuente '%1'. Este es un error crítico, por favor arreglar su configuración.";
 $content['LN_GEN_ERRORRETURNPREV'] = "Haga clic aquí para regresar a la página anterior.";
 $content['LN_GEN_ERRORDETAILS'] = "Detalles del error:";
-	$content['LN_SOURCES_ERROR_WITHINSOURCE'] = "The source '%1' checking returned with an error:<br>%2";
+$content['LN_SOURCES_ERROR_WITHINSOURCE'] = "La comprobación de origen '%1' retorno con un error:<br>%2";
 $content['LN_SOURCES_ERROR_EXTRAMSG'] = "Detalles del error adicionales:<br>%1";
 $content['LN_ERROR_NORECORDS'] = "No se encontraron registros de syslog";
 $content['LN_ERROR_FILE_NOT_FOUND'] = "No se pudo encontrar el archivo Syslog";
@@ -83,7 +87,7 @@ $content['LN_GEN_ERROR_EXPORING'] = "Error al exportar datos";
 $content['LN_GEN_ERROR_INVALIDEXPORTTYPE'] = "Se seleccionó un formato de exportación no válido u otros parámetros fueron incorrectos.";
 $content['LN_GEN_ERROR_SOURCENOTFOUND'] = "No se pudo encontrar la fuente con ID '%1'.";
 $content['LN_GEN_MOREINFORMATION'] = "Más Información";
-	$content['LN_FOOTER_PAGERENDERED'] = "Page rendered in";
+$content['LN_FOOTER_PAGERENDERED'] = "Página generada en";
 $content['LN_FOOTER_DBQUERIES'] = "Consultas DB";
 $content['LN_FOOTER_GZIPENABLED'] = "GZIP habilitado";
 	$content['LN_FOOTER_SCRIPTTIMEOUT'] = "Script Timeout";
@@ -184,40 +188,40 @@ $content['LN_FILTER_SOURCE'] = "Origen (Hostname)";
 $content['LN_FILTER_MESSAGETYPE'] = "Tipo de Mensaje";
 
 // Install Page
-	$content['LN_CFG_DBSERVER'] = "Database Host";
-	$content['LN_CFG_DBPORT'] = "Database Port";
-	$content['LN_CFG_DBNAME'] = "Database Name";
-	$content['LN_CFG_DBPREF'] = "Table prefix";
-	$content['LN_CFG_DBUSER'] = "Database User";
-	$content['LN_CFG_DBPASSWORD'] = "Database Password";
-	$content['LN_CFG_PARAMMISSING'] = "The following parameter were missing: ";
-	$content['LN_CFG_SOURCETYPE'] = "Source Type";
-	$content['LN_CFG_DISKTYPEOPTIONS'] = "Disk Type Options";
-	$content['LN_CFG_LOGLINETYPE'] = "Logline type";
-	$content['LN_CFG_SYSLOGFILE'] = "Syslog file";
-	$content['LN_CFG_DATABASETYPEOPTIONS'] = "Database Type Options";
-	$content['LN_CFG_DBTABLETYPE'] = "Table type";
-	$content['LN_CFG_DBSTORAGEENGINE'] = "Database Storage Engine";
-	$content['LN_CFG_DBTABLENAME'] = "Database Tablename";
-	$content['LN_CFG_NAMEOFTHESOURCE'] = "Name of the Source";
-	$content['LN_CFG_FIRSTSYSLOGSOURCE'] = "First Syslog Source";
-	$content['LN_CFG_DBROWCOUNTING'] = "Enable Row Counting";
-	$content['LN_CFG_VIEW'] = "Select View";
-	$content['LN_CFG_DBUSERLOGINREQUIRED'] = "Require user to be logged in";
-	$content['LN_CFG_MSGPARSERS'] = "Message Parsers (comma seperated)";
-	$content['LN_CFG_NORMALIZEMSG'] = "Normalize Message within Parsers";
-	$content['LN_CFG_SKIPUNPARSEABLE'] = "Skip unparseable messages (Only works if msgparsers are configured!)";
-	$content['LN_CFG_DBRECORDSPERQUERY'] = "Recordcount for database queries";
-	$content['LN_CFG_LDAPServer'] = "LDAP Server Hostname/IP";
-	$content['LN_CFG_LDAPPort'] = "LDAP Port, default 389 (636 for SSL)";
-	$content['LN_CFG_LDAPBaseDN'] = "Base DN for LDAP Search";
-	$content['LN_CFG_LDAPSearchFilter'] = "Basic Search filter";
-	$content['LN_CFG_LDAPUidAttribute'] = "LDAP Username attribute";
-	$content['LN_CFG_LDAPBindDN'] = "Privilegied user used to LDAP queries";
-	$content['LN_CFG_LDAPBindPassword'] = "Password of the privilegied user";
-	$content['LN_CFG_LDAPDefaultAdminUser'] = "Default administrative LDAP Username";
-	$content['LN_CFG_AUTHTYPE'] = "Authentication method";
-	$content['LN_GEN_AUTH_LDAP_OPTIONS'] = "LDAP Authentication Options";
+$content['LN_CFG_DBSERVER'] = "Host de Base de Datos";
+$content['LN_CFG_DBPORT'] = "Puerto de Base de Datos";
+$content['LN_CFG_DBNAME'] = "Nombre de la Base de Datos";
+$content['LN_CFG_DBPREF'] = "Prefijo de Tabla";
+$content['LN_CFG_DBUSER'] = "Usuario de Base de Datos";
+$content['LN_CFG_DBPASSWORD'] = "Contraseña de Base de Datos";
+$content['LN_CFG_PARAMMISSING'] = "Faltaban los siguientes parámetros: ";
+$content['LN_CFG_SOURCETYPE'] = "Tipo de Fuente";
+$content['LN_CFG_DISKTYPEOPTIONS'] = "Opciones de Tipo de Disco";
+$content['LN_CFG_LOGLINETYPE'] = "Tipo de Línea de Registro";
+$content['LN_CFG_SYSLOGFILE'] = "Archivo Syslog";
+$content['LN_CFG_DATABASETYPEOPTIONS'] = "Opciones de Tipo de Base de Datos";
+$content['LN_CFG_DBTABLETYPE'] = "Tipo de Tabla";
+	$content['LN_CFG_DBSTORAGEENGINE'] = "Motor de Almacenamiento de Bases de Datos";
+$content['LN_CFG_DBTABLENAME'] = "Nombre de Tabla en la Base de Datos";
+$content['LN_CFG_NAMEOFTHESOURCE'] = "Nombre de la Fuente";
+$content['LN_CFG_FIRSTSYSLOGSOURCE'] = "Primera Fuente de Syslog";
+$content['LN_CFG_DBROWCOUNTING'] = "Habilitar recuento de filas";
+$content['LN_CFG_VIEW'] = "Seleccione Ver";
+$content['LN_CFG_DBUSERLOGINREQUIRED'] = "Requerir que el Usuario Inicie Sesión";
+$content['LN_CFG_MSGPARSERS'] = "Analizadores de mensajes (separados por comas)";
+$content['LN_CFG_NORMALIZEMSG'] = "Normalizar Mensaje dentro de Analizadores";
+$content['LN_CFG_SKIPUNPARSEABLE'] = "Omitir mensajes no analizables (¡Solo funciona si los Analizadores de Mensajes están configurados!)";
+$content['LN_CFG_DBRECORDSPERQUERY'] = "Recuento de registros para consultas de Bases de Datos";
+$content['LN_CFG_LDAPServer'] = "Servidor LDAP Hostname/IP";
+$content['LN_CFG_LDAPPort'] = "Puerto LDAP, predeterminado 389 (636 para SSL)";
+$content['LN_CFG_LDAPBaseDN'] = "DN base para Búsqueda LDAP";
+$content['LN_CFG_LDAPSearchFilter'] = "Filtro de Búsqueda Básica";
+$content['LN_CFG_LDAPUidAttribute'] = "Atributo de Nombre de Usuario LDAP";
+$content['LN_CFG_LDAPBindDN'] = "Usuario Privilegiado utilizado para consultas LDAP";
+$content['LN_CFG_LDAPBindPassword'] = "Contraseña del Usuario Privilegiado";
+$content['LN_CFG_LDAPDefaultAdminUser'] = "Nombre de Usuario Administrativo LDAP predeterminado";
+$content['LN_CFG_AUTHTYPE'] = "Método de Autentificación";
+$content['LN_GEN_AUTH_LDAP_OPTIONS'] = "Opciones de Autenticación LDAP";
 
 // Details page
 $content['LN_DETAILS_FORSYSLOGMSG'] = "Detalles del mensajes de syslog con id";
@@ -238,7 +242,7 @@ $content['LN_LOGIN_LDAP_USERNOTFOUND'] = "No se pudo encontrar el usuario '%1'";
 $content['LN_LOGIN_LDAP_USERCOULDNOTLOGIN'] = "No se pudo iniciar sesión con el usuario '%1', error de LDAP:%2";
 $content['LN_LOGIN_LDAP_PASSWORDFAIL'] = "El usuario '%1' no pudo iniciar sesión con esa contraseña";
 $content['LN_LOGIN_LDAP_SERVERFAILED'] = "Error al conectarse al servidor LDAP '%1'";
-	$content['LN_LOGIN_LDAP_USERBINDFAILED'] = "Could not bind with the Search user DN '%1'";
+$content['LN_LOGIN_LDAP_USERBINDFAILED'] = "No se pudo vincular con el usuario de búsqueda DN '%1'";
 
 
 // Install Site
@@ -330,7 +334,7 @@ $content['LN_STATS_GRAPH'] = "Grafico";
 $content['LN_GEN_ERROR_INVALIDFIELD'] = "Nombre de campo no válido";
 $content['LN_GEN_ERROR_MISSINGCHARTFIELD'] = "Falta el nombre del campo";
 $content['LN_GEN_ERROR_INVALIDTYPE'] = "Tipo de gráfico no válido o desconocido.";
-	$content['LN_ERROR_CHARTS_NOTCONFIGURED'] = "There are no charts configured at all.";
+$content['LN_ERROR_CHARTS_NOTCONFIGURED'] = "No hay gráficos configurados.";
 $content['LN_CHART_TYPE'] = "Tipo de gráfico";
 $content['LN_CHART_WIDTH'] = "Ancho del gráfico";
 $content['LN_CHART_FIELD'] = "Campo de gráfico";
@@ -368,7 +372,7 @@ $content['LN_GEN_ALL_OTHER_EVENTS'] = "Todos los demás eventos";
 $content['LN_REPORT_FILTERS'] = "Lista de filtros usados";
 $content['LN_REPORT_FILTERTYPE_DATE'] = "Fecha";
 $content['LN_REPORT_FILTERTYPE_NUMBER'] = "Número";
-	$content['LN_REPORT_FILTERTYPE_STRING'] = "String";
+$content['LN_REPORT_FILTERTYPE_STRING'] = "Texto";
 $content['LN_GEN_SUCCESS_WHILEREPORTGEN'] = "El informe se generó correctamente";
 $content['LN_GEN_ERROR_REPORTFAILEDTOGENERATE'] = "Error al generar el informe, detalles del error: %1";
 $content['LN_GEN_SUCCESS_REPORTWASGENERATED_DETAILS'] = "Informe generado correctamente: %1";
