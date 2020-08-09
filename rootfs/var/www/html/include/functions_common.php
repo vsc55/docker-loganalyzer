@@ -65,7 +65,7 @@ $LANG_EN = "en";	// Used for fallback
 $LANG = "en";		// Default language
 
 // Default Template vars
-$content['BUILDNUMBER'] = "4.1.10";
+$content['BUILDNUMBER'] = "4.1.11";
 $content['UPDATEURL'] = "http://loganalyzer.adiscon.com/files/version.txt";
 $content['TITLE'] = "Adiscon LogAnalyzer :: Release " . $content['BUILDNUMBER'];	// Default page title 
 $content['BASEPATH'] = $gl_root_path;
@@ -723,6 +723,7 @@ function InitFrontEndVariables()
 	$content['MENU_SEARCH'] = $content['BASEPATH'] . "images/icons/view.png";
 	$content['MENU_SELECTION_DISABLED'] = $content['BASEPATH'] . "images/icons/selection.png";
 	$content['MENU_SELECTION_ENABLED'] = $content['BASEPATH'] . "images/icons/selection_delete.png";
+	$content['MENU_SELECTION_ENABLED_DISABLED'] = $content['BASEPATH'] . "images/icons/selection_delete_disabled.png";
 	$content['MENU_TEXT_FIND'] = $content['BASEPATH'] . "images/icons/text_find.png";
 	$content['MENU_EARTH_FIND'] = $content['BASEPATH'] . "images/icons/earth_find.png";
 	$content['MENU_FIND'] = $content['BASEPATH'] . "images/icons/find.png";
@@ -1249,10 +1250,15 @@ function IncludeLanguageFile( $langfile, $failOnError = true )
 	global $LANG, $LANG_EN; 
 
 	// If english is not selected, we load ENGLISH first - then overwrite with configured language
-	if ( $LANG != "en" ) 
-		$langengfile = str_replace( $LANG, $LANG_EN, $langfile );
+	if ( $LANG != "en" ) {
+		//Fix #56
+		$arr_LANG		= array(sprintf('/%s/', $LANG),    sprintf('.%s.', $LANG));
+		$arr_LANG_EN	= array(sprintf('/%s/', $LANG_EN), sprintf('.%s.', $LANG_EN));
+		$langengfile	= str_replace($arr_LANG, $arr_LANG_EN, $langfile);
+	}
 	else
 		$langengfile = $langfile;
+	
 	if ( file_exists($langengfile) )
 		include( $langengfile );
 	else
