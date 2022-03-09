@@ -1,6 +1,9 @@
 FROM vsc55/apache:php-5.6
 
-LABEL version="1.0" maintainer="vsc55@cerebelum.net" description="Docker webapp loganalyzer"
+LABEL version="1.1" maintainer="vsc55@cerebelum.net" description="Docker webapp loganalyzer"
+
+ARG loganalyzer_ver
+ENV loganalyzer_ver=${loganalyzer_ver}
 
 COPY --chown=root:root ["rootfs", "/"]
 
@@ -13,7 +16,7 @@ RUN chmod +x /*.sh; \
 
 WORKDIR /var/www/html
 
-HEALTHCHECK --interval=5s --timeout=3s --start-period=20s CMD /health_check.sh
+HEALTHCHECK --interval=4m --timeout=10s --start-period=30s CMD /health_check.sh
 
 ENV TZ=Europe/Madrid
 ENV HTTP_PORT=80
