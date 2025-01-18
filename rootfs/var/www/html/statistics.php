@@ -106,10 +106,16 @@ if ( isset($content['Charts']) )
 			// --- 
 
 			// --- Set Chart default Filterstring
-			if ( strlen($myChart['chart_defaultfilter']) > 0 )
+			if ( isset($myChart['chart_defaultfilter']) && strlen($myChart['chart_defaultfilter']) > 0 )
 				$myChart['chart_defaultfilter_urldecoded']	= urlencode($myChart['chart_defaultfilter']);
 			else 
 				$myChart['chart_defaultfilter_urldecoded'] = "";
+
+			if ( isset($myChart['chart_orderby']) && strlen($myChart['chart_orderby']) > 0 )
+                                $myChart['chart_orderby_urldecoded']      = urlencode($myChart['chart_orderby']);
+                        else
+                                $myChart['chart_orderby_urldecoded'] = "";
+
 			// ---
 
 			// --- Set CSS Class

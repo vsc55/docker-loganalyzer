@@ -122,10 +122,13 @@ $content['main_pager_last_found'] = false;
 // Init Sorting variables
 $content['sorting'] = "";
 $content['searchstr'] = "";
-$content['searchstr_htmlform'] = "";
+$content['searchstr_htmlform'] = GetConfigSetting("EventEmptySearchDefaultFilter", "", CFGLEVEL_USER);
 $content['highlightstr'] = "";
 $content['highlightstr_htmlform'] = "";
 $content['EXPAND_HIGHLIGHT'] = "false";
+
+// Control header visibility 
+$_SESSION['SESSION_MAXIMIZED'] = GetConfigSetting("SESSION_MAXIMIZED", 0, CFGLEVEL_USER);
 
 // --- Read and process filters from search dialog!
 if ( (isset($_POST['search']) || isset($_GET['search'])) || (isset($_POST['filter']) || isset($_GET['filter'])) )
@@ -202,7 +205,6 @@ if ( (isset($_POST['search']) || isset($_GET['search'])) || (isset($_POST['filte
 	}
 }
 // --- 
-
 // --- BEGIN CREATE TITLE
 $content['TITLE'] = InitPageTitle();
 
@@ -215,6 +217,10 @@ else
 
 
 // --- BEGIN Custom Code
+//by default limit search to some sane range
+if (empty($content['searchstr'])){
+	$content['searchstr'] = $content['searchstr_htmlform'];
+}
 
 // Do not BLOCK other Site Calls
 WriteClosePHPSession();
@@ -326,6 +332,7 @@ if ( isset($content['Sources'][$currentSourceID]) )
 			// --- Obtain characters limits first!
 			$myMsgCharLimit = GetConfigSetting("ViewMessageCharacterLimit", 80, CFGLEVEL_USER);
 			$myStrCharLimit = GetConfigSetting("ViewStringCharacterLimit", 30, CFGLEVEL_USER);
+			$ViewColoredCells = GetConfigSetting("ViewColoredCells", 0, CFGLEVEL_USER);
 			// ---
 
 			//Loop through the messages!
@@ -364,10 +371,11 @@ if ( isset($content['Sources'][$currentSourceID]) )
 				// --- 
 
 				// --- Set CSS Class
+				$szCssAppend = ($ViewColoredCells == 1 ? ((isset($logArray[SYSLOG_SEVERITY]) && strlen($logArray[SYSLOG_SEVERITY]) > 0 ? "_" . $logArray[SYSLOG_SEVERITY] : "")) : "");
 				if ( $counter % 2 == 0 )
-					$content['syslogmessages'][$counter]['cssclass'] = "line1";
+					$content['syslogmessages'][$counter]['cssclass'] = "line1" . $szCssAppend;
 				else
-					$content['syslogmessages'][$counter]['cssclass'] = "line2";
+					$content['syslogmessages'][$counter]['cssclass'] = "line2" . $szCssAppend;
 				// --- 
 
 				// --- Copy other needed properties

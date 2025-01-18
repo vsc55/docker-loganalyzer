@@ -1,7 +1,10 @@
-version: "2"
+version: "3.8"
+
 services:
   webapp:
     image: vsc55/loganalyzer:latest
+    container_name: LogAnalyzer
+    restart: always
     ports:
       - "80:80"
     environment:

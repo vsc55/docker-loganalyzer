@@ -3,14 +3,6 @@ body
 {
 	color: #000000;
 	background-color: #f9f9f9;
-
-	scrollbar-face-color: #DEE3E7;
-	scrollbar-highlight-color: #FFFFFF;
-	scrollbar-shadow-color: #DEE3E7;
-	scrollbar-3dlight-color: #D1D7DC;
-	scrollbar-arrow-color:  #006699;
-	scrollbar-track-color: #EFEFEF;
-	scrollbar-darkshadow-color: #98AAB1;
 }
 
 td 
@@ -23,7 +15,6 @@ a:link,a:active,a:visited,a.postlink
 {
 	font-weight: bold;
 	text-decoration:none;
-
 	background-color: transparent;
 	color:#005989;
 }
@@ -33,6 +24,11 @@ a:hover
 	color:#002C5B;
 }
 /*---*/
+
+/* Gridline Link Classes */
+.gridline {
+	color:#ffffff;
+}
 
 /* Context Link Classes */
 a.contextlink:link,a.contextlink:active,a.contextlink:visited,a.contextlink
@@ -156,36 +152,36 @@ font
 	border-color: #44617D #203040 #203040 #44617D; 
 }
 
-/* Cells for listening */
-.line0
-{
-		color: #000000;
-	background-color: #DDDDDD;
+/* Style related Cells for listening */
+.ui-menu-item a, .ui-menu-item a:link, .ui-menu-item a:active, .ui-menu-item a:visited  {
+	color: #000000 !important;
 }
-.line0:hover 
-{ 
-	background-color:#F9F9F9; 
+.ui-menu-item a:hover {
+	color: #000000 !important;
 }
 
-.line1
-{
+.line0 {
+	color: #000000;
+	background-color: #DDDDDD;
+}
+.line0:hover { 
+	background-color:#F9F9F9; 
+}
+.line1 {
 	color: #000000;
 	background-color: #EEEEEE;
 }
-.line1:hover 
-{ 
+.line1:hover { 
+	background-color:#F9F9F9; 
+}
+.line2 {
+	color: #000000;
+	background-color: #F5F5F5;
+}
+.line2:hover { 
 	background-color:#F9F9F9; 
 }
 
-.line2
-{
-		color: #000000;
-	background-color: #F5F5F5;
-}
-.line2:hover 
-{ 
-	background-color:#F9F9F9; 
-}
 .tableBackground
 {
 		color: #000000;
@@ -431,7 +427,7 @@ select, input, button, textarea
 .highlighted 
 { 
 	font-weight: bold;
-
+	background-color: #ffffff; 
 	color: #BB0000 
 }
 
